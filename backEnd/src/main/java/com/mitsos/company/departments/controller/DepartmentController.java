@@ -39,19 +39,7 @@ public class DepartmentController {
     }
 
     
-    @PutMapping("/{id}")
-    public ResponseEntity<Department> updateDepartment(@PathVariable Long id, @RequestBody Department updatedDepartment) {
-        Optional<Department> department = departmentRepository.findById(id);
-        if (department.isPresent()) {
-            updatedDepartment.setDepId(id); // Ensure the ID is set for update
-            departmentRepository.save(updatedDepartment);
-            return ResponseEntity.ok(updatedDepartment);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    
+  
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteDepartment(@PathVariable Long id) {
         departmentRepository.deleteById(id);
