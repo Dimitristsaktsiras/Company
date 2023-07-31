@@ -19,26 +19,26 @@ public class DepartmentController {
         this.departmentRepository = departmentRepository;
     }
 
-    // Endpoint to get all departments
+   
     @GetMapping
     public List<Department> getAllDepartments() {
         return departmentRepository.findAll();
     }
 
-    // Endpoint to get a department by ID
+   
     @GetMapping("/{id}")
     public ResponseEntity<Department> getDepartmentById(@PathVariable Long id) {
         Optional<Department> department = departmentRepository.findById(id);
         return department.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
-    // Endpoint to create a new department
+    
     @PostMapping
     public Department createDepartment(@RequestBody Department department) {
         return departmentRepository.save(department);
     }
 
-    // Endpoint to update an existing department
+    
     @PutMapping("/{id}")
     public ResponseEntity<Department> updateDepartment(@PathVariable Long id, @RequestBody Department updatedDepartment) {
         Optional<Department> department = departmentRepository.findById(id);
@@ -51,7 +51,7 @@ public class DepartmentController {
         }
     }
 
-    // Endpoint to delete a department
+    
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteDepartment(@PathVariable Long id) {
         departmentRepository.deleteById(id);
